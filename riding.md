@@ -4,9 +4,19 @@ sequenceDiagram
     participant Bike
     participant Server
     participant 第三方
-    User->>+APP: 尋車
-    APP-->>-User: 車輛資訊(UWB)
-    Note over APP,User: 車輛位置等資訊
+    U User->>APP: 尋車
+    alt 遠距離
+    APP->>Bike: 車輛資訊收尋
+    Note over APP,Bike: Apple 「Find My」 服務
+    Bike-->>APP: 車輛資訊回報
+    Note over Bike,APP: 裝置名稱/最後使用位置與時間
+    APP-->>User: 車輛資訊提供
+    else 近距離
+    APP->>Bike: 車輛資訊搜尋(UWD)
+    Bike-->>APP: 車輛資訊回報(UWD)
+    Note over User,Bike: 車輛編號/定位顯示
+    APP-->>User: 車輛資訊提供
+    end
     User->>+APP: 解鎖
     APP->>Bike: 解鎖指令
     Bike-->>APP: 解鎖確認
