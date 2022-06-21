@@ -19,7 +19,7 @@ sequenceDiagram
     Note over APP,Server: 服務不開通
     APP-->>-User: 付款失敗
     else 付款成功
-    User->>+APP: 付款動作
+    User->>+APP: 付款成功
     APP->>Server: 購買方案完成
     Note over APP,Server: 訂單資訊（付款時間/金額/方案）
     Server-->>APP: 權鑑確認
