@@ -1,0 +1,36 @@
+sequenceDiagram
+ participant User
+ participant Web
+ participant Server
+ participant APP
+    User->>+Web: 登入會員
+    Web->>Server: 會員資訊查詢
+    Server-->>Web: 會員資訊回報
+    Web-->>-User:登入成功
+    User->>Web: 查看方案
+    Web-->>User: 方案顯示
+    User->>Web: 方案購買
+    Web-->>User: 付款方式提供
+   alt 付款失敗
+    User->>+Web: 選擇付款方式
+    Web-->>User: 付款頁面
+    User->>Web: 付款動作失敗
+    Note over Web,User: 用戶取消/信用卡額度不足/交易逾時等
+    Web->>Server: 購買方案失敗
+    Note over Web,Server: 失敗訂單資訊（付款時間/金額/方案）
+    Server-->>APP: 權鑑確認
+    Note over APP,Server: 服務不開通
+    Server-->>Web: 服務不開通回報
+    Web-->>-User: 付款失敗結果顯示
+    else 付款成功
+    User->>+Web: 選擇付款方式
+    Web-->>User: 付款頁面
+    User->>Web: 付款動作成功
+    Web->>Server: 購買方案完成
+    Note over Web,Server: 訂單資訊（付款時間/金額/方案）
+    Server-->>APP: 權鑑確認
+    Note over APP,Server: APP服務開通
+    Server-->>Web: 服務開通回報 
+    Web-->>-User: 付款完成
+    end
+    User->>APP: 服務使用
