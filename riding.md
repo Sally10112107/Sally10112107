@@ -6,10 +6,10 @@ sequenceDiagram
     participant 第三方
     U User->>APP: 尋車
     alt 遠距離
-    APP->>Bike: 車輛資訊收尋
-    Note over APP,Bike: Apple 「Find My」 服務
-    Bike-->>APP: 車輛資訊回報
-    Note over Bike,APP: 裝置名稱/最後使用位置與時間
+    APP->>Server: 車輛資訊搜尋
+    Note over APP,Server: Apple 「Find My」 服務
+    Server-->>APP: 車輛資訊回報
+    Note over Server,APP: 裝置名稱/最後使用位置與時間
     APP-->>User: 車輛資訊提供
     else 近距離
     APP->>Bike: 車輛資訊搜尋(UWD)
