@@ -18,9 +18,10 @@ sequenceDiagram
     babyApi-->>-server: 寶寶頭像
     note over server: 產出三方(2用戶+寶寶頭像)照片組合
     note over server: 儲存組合頭像並產生頭像網址
-    server-->>tvApp: 廣播寶寶頭像完成
+    server-->>tvApp: 廣播合成圖像完成
     server-->>-app: 廣播寶寶頭像完成
     note over app: 提示完成並引導至ＴＶ查看成果
-    tvApp->>+server: 請求寶寶頭像資訊
-    server-->>-tvApp: 寶寶頭像資訊
-    note over tvApp: 顯示並投放頭像及ＱＲＣＯＤＥ
+    tvApp->>+server: 請求合成圖像資訊
+    server-->>-tvApp: 合成圖像資訊
+    note over tvApp: 顯示並投放合成圖像及QRCode
+    note over tvApp: 合成圖像廣播到取得下一個結果時更換
