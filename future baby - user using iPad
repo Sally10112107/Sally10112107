@@ -3,7 +3,7 @@ sequenceDiagram
     participant 觀眾B
     participant ipadA
     participant ipadB
-
+note over觀眾A,ipadB:一方點擊開始後，雙方同時操作流程
 觀眾A->>ipadA:開始操作
 ipadA-->>觀眾A:拍照指示
 觀眾A->>ipadA:拍照確認
@@ -14,6 +14,7 @@ ipadB-->>觀眾B:風格轉換照查看
 
 opt 想重拍
     alt 雙方想重拍
+    note over觀眾A,ipadB:雙方同時操作流程
         觀眾A->>ipadA:重拍指示
         ipadA-->>觀眾A:拍照指示
         觀眾A->>ipadA:拍照確認
@@ -25,6 +26,7 @@ opt 想重拍
         觀眾B->>ipadB:照片確認
 
     else 一方想重拍
+    note over觀眾A,ipadB:完成方將顯示對方未完成，未完成方會顯示對方已完成
         觀眾B->>ipadB:風格轉換照確認
         ipadB->>觀眾B:確認風格轉換照並顯示觀眾A未完成
         ipadA->>觀眾A:拍照指示與觀眾B已完成提醒
@@ -33,7 +35,7 @@ opt 想重拍
         觀眾A->>ipadA:照片確認
     end
 end
-
+note over觀眾A,ipadB:雙方皆確認風格轉換照後才會生成未來寶寶照片
 ipadA-->>觀眾A:未來寶寶照片生成中
 ipadB-->>觀眾B:未來寶寶照片生成中
 ipadA-->>觀眾A:未來寶寶照片完成！請前往外面大螢幕查看
