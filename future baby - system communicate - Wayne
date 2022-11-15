@@ -1,0 +1,26 @@
+sequenceDiagram
+    participant app as iPad(A\B)
+    participant server as 後端服務
+    participant babyApi as BabyAC API
+    participant tvApp as 投放設備(iPad或PC)
+
+    note over app: 開始拍攝
+    app->>+server: 請求GroupID
+    server-->>-app: 廣播GroupID
+    note over app: 拍攝頭像並進行風格轉換
+    app->>+server: 上傳Ａ頭像
+    note over app,server: GroupID、Ａ頭像
+    server-->>-app: 廣播等待Ｂ頭像上傳
+    app->>+server: 上傳Ｂ頭像
+    note over app,server: GroupID、Ｂ頭像
+    server-->>app:雙方拍攝結果
+    server->>+babyApi: 上傳Ａ、Ｂ頭像
+    babyApi-->>-server: 寶寶頭像
+    note over server: 產出三方(2用戶+寶寶頭像)照片組合
+    note over server: 儲存組合頭像並產生頭像網址
+    server-->>tvApp: 廣播寶寶頭像完成
+    server-->>-app: 廣播寶寶頭像完成
+    note over app: 提示完成並引導至ＴＶ查看成果
+    tvApp->>+server: 請求寶寶頭像資訊
+    server-->>-tvApp: 寶寶頭像資訊
+    note over tvApp: 顯示並投放頭像及ＱＲＣＯＤＥ
