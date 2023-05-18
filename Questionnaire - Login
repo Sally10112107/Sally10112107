@@ -9,28 +9,14 @@ web->>填寫人:登入畫面
 
 alt 登入失敗
 填寫人->>web:輸入帳號密碼
-web->>server:身分確認請求
+web-->>server:身分確認請求
 server->>web:查無資料或密碼錯誤
-web->>填寫人:登入失敗
+web-->>填寫人:登入失敗
 note over web,填寫人:請品管協助
 
 else 登入成功
 填寫人->>web:輸入帳號密碼
-web->>server:身分確認請求
+web-->>server:身分確認請求
 server->>web:身分確認成功
-web->>填寫人:登入成功
-end
-
-web->>填寫人:顯示應填寫之問卷入口
-填寫人->>web:點擊欲填寫的問卷
-web->>填寫人:顯示問卷內容
-
-alt 登入失敗
-填寫人->>web:輸入帳號密碼
-web->>填寫人:登入失敗
-note over web,填寫人:請品管協助
-
-else 登入成功
-填寫人->>web:輸入帳號密碼
-web->>填寫人:登入成功
+web-->>填寫人:登入成功
 end
