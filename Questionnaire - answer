@@ -1,0 +1,39 @@
+sequenceDiagram
+    participant web
+    participant 品管
+    participant 填寫人
+    participant server
+
+填寫人->>web:點擊問卷
+web-->>填寫人:顯示問卷題目
+填寫人->>web:點選或輸入文字
+
+alt 無送出/返回
+填寫人->>web:返回
+web-->>填寫人:返回確認
+填寫人->>web:確認
+web-->>填寫人:顯示平台首頁
+note over server,web:Server不暫存記錄
+
+else 送出成功
+填寫人->>web:送出作答
+web-->>填寫人:送出確認
+填寫人->>web:確認
+web-->>填寫人:送出成功
+web-->>server:填寫記錄傳送
+server->>web:收到後回覆完成時間
+web-->>填寫人:於首頁顯示該問卷完成時間
+end
+
+填寫人->>web:點擊已完成問卷
+alt 初次送出N天內
+web->>填寫人:往作答觀看
+填寫人->>web:重新填寫
+web->>填寫人:是否重新填寫？
+填寫人->>web:是
+web->>填寫人:顯示問卷題目
+
+else 初次送出N天後
+web->>填寫人:查看往作答觀看
+
+end
