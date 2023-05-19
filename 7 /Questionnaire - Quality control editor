@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant web
+    participant 品管
+    participant server
+
+note over web,server:問卷截止
+品管->>web:問卷結果彙整
+web-->>server:問卷結果彙整請求
+note over web,server:主管與員工分數權重計算、綜合評論彙整
+server->>web:傳送問卷結果
+web-->>品管:問卷結果查看
+note over web,server: 如有不客觀的高低分，品管需協助釐清並調整
+品管->>web:編輯問卷結果
+web-->>品管:開放編輯
+品管->>web:加減分並備註原因，存檔
+web-->>品管:存檔確認
+品管->>web:確認
+web-->>品管:存檔完成
+web-->>server:傳送品管調整後結果
+server->>web:儲存成功，記錄時間
+web-->>品管:調整後的問卷結果
