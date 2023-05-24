@@ -1,7 +1,6 @@
 sequenceDiagram
-    participant web
-    participant 品管
     participant 填寫人
+    participant web
     participant server
 
 填寫人->>web:點擊問卷
