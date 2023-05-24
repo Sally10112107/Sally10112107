@@ -1,6 +1,6 @@
 sequenceDiagram
-    participant web
     participant 品管
+    participant web
     participant server
 
 note over web,server:問卷截止
