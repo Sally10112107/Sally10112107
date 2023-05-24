@@ -1,0 +1,43 @@
+sequenceDiagram
+    participant 品管
+    participant 單位主管
+    participant web
+    participant server
+
+品管->>+web:建立當次問卷
+web-->>品管:問卷設定填寫
+note over web,品管: 問卷名稱、填寫區間、題型等資訊、題目負責人
+品管->>web:儲存設定
+web-->>server:問卷設定傳送
+server->>web:設定儲存成功
+web-->>-品管:儲存成功
+web-->>單位主管: 題目設定任務
+note over web,單位主管: 問卷名稱、設定說明
+單位主管->>web: 輸入題目並送出
+web-->>server:題目內容傳送
+server->>web: 題目內容儲存成功
+web-->>單位主管:送出成功
+web->>品管:題目審查通知
+
+alt 審查不通過
+品管->>web:審查不通過
+note over 品管,單位主管: 品管可自行調整或指派主管調整
+web->>server:審查不通過記錄
+server->>web:完成記錄
+web->>品管:不通過確認
+
+else 審查不通過
+品管->>web:審查通過
+web->>server:審查通過記錄
+server->>web:完成記錄
+web->>品管:通過確認
+note over web,品管:評比人設定提醒
+
+end
+
+品管->>web: 評比人設定
+web->>品管: 設定選單
+品管->>web: 送出設定
+web->>server: 評比人設定傳送
+server->>web:設定儲存成功
+web->>品管:送出成功
