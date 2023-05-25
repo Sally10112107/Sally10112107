@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant 單位主管
+    participant web
+    participant server
+
+note over server,單位主管:單位主管於email收到問卷題目任務
+單位主管->>+web:登入
+web-->>server:身分確認需求
+server->>web:確認成功
+web-->>-單位主管:登入成功
+單位主管->>+web: 輸入題目內容並送出
+web-->>server: 題目內容記錄傳送
+server->>web: 儲存成功
+web-->>-單位主管:儲存成功
+note over 單位主管,server: 系統通知品管審核問卷
+
+alt品管審核不通過
+note over server,單位主管: 信件通知審核不通過，品管說明調整方向
+單位主管->>+web: 編輯題目內容並送出
+web-->>server: 題目內容記錄傳送
+server->>web: 儲存成功
+web-->>-單位主管:儲存成功
+note over 單位主管,server: 系統通知品管審核問卷
+
+else 品管審核通過
+note over server,單位主管: 信件通知審核通過
+單位主管->>+web:查看題目內容
+web-->>-單位主管:顯示題目內容，無法編輯
+
+end
