@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant 品管
+    participant web
+    participant server
+
+note over 品管,server:結束填寫，計算問卷結果
+品管->>web:查看問卷結果與綜合評論
+web-->>品管:顯示分數與評論
+note over 品管,server: 品管釐清非正向反饋評論 ex.事情經過、填寫動機
+品管->>web: 下載結案規範文件檔案
+web-->>品管:下載成功
+note over品管,server: 品管使用規範文件檔記錄溝通過程與解決方案
+品管->>web:上傳結案文件檔案
+web-->>品管:上傳資料畫面
+品管->>web:選擇檔案並送出
+web-->>server:傳送結案檔案
+server->>web:儲存成功,記錄上傳人
+web-->>品管:上傳成功
+品管->>web:查看結案記錄內容
+web-->>品管:顯示文件內容（可下載）
